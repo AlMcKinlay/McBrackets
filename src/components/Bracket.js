@@ -260,7 +260,7 @@ function BracketView() {
     changeBracket(newBracket);
   }
 
-  const submissionsOpen = false;
+  const submissionsOpen = true;
 
   return (
     <Bracket> 
