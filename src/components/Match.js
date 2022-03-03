@@ -108,7 +108,7 @@ function Match({team1, team2, level, roundorder, total, setTeam, activeround}) {
         </ConnectorsIncoming>
        }
       <Teams>
-        <Team name={team1} onClick={() => selectTeam(team1)}></Team>
+        <Team name={team1} onClick={() => team2 && selectTeam(team1)}></Team>
         {team2 && <Team name={team2} onClick={() => selectTeam(team2)}></Team>}
       </Teams>
       {team2 ?
