@@ -168,9 +168,13 @@ const persistedState = JSON.parse(localStorage.getItem(`submit-state-${roundId}-
 
 function BracketView() {
   const [state, send] = useMachine(bracketMachine, {state: persistedState});
-  const [bracket, setBracket] = useState(
-    JSON.parse(localStorage.getItem(`bracket-${roundId}-${version}`)) || []
-  );
+  let localStorageState;
+  try {
+    localStorageState = JSON.parse(localStorage.getItem(`bracket-${roundId}-${version}`));
+  } catch (e) {
+    localStorageState = [];
+  }
+  const [bracket, setBracket] = useState(localStorageState || []);
   const changeBracket = (bracket) => {
     localStorage.setItem(`bracket-${roundId}-${version}`, JSON.stringify(bracket));
     setBracket(bracket);
