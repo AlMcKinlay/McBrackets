@@ -66,7 +66,8 @@ const startingRound = [
   ["Ludicolo", "Donphan"]
 ];
 
-const roundId = "ise-march-madness-2022";
+const year = "2023"
+const roundId = `ise-march-madness-${year}`;
 const version = 1;
 
 const setupBracket = (setBracket) => {
