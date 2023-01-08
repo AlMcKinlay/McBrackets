@@ -209,9 +209,12 @@ function BracketView() {
 
   const email = (csv, name) => {
     const formData = new FormData();
-    formData.append('csv', csv);
+    formData.append('data', csv);
     formData.append('form-name', 'csv-submit');
     formData.append('subject', `Form submission from ${name} ${year}`)
+    formData.append('test', `Form submission from ${name} ${year}`)
+    formData.append('name', name)
+    formData.append('year', year)
     fetch('/', {
       method: 'POST',
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
