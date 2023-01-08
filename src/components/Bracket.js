@@ -210,7 +210,7 @@ function BracketView() {
   const email = (csv, name) => {
     const formData = new FormData();
     formData.append('data', csv);
-    formData.append('form-name', 'csv-submit');
+    formData.append('form-name', 'form-submit');
     formData.append('subject', `Form submission from ${name} ${year}`)
     formData.append('test', `Form submission from ${name} ${year}`)
     formData.append('name', name)
