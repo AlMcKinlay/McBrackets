@@ -16,9 +16,9 @@
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.1",
     "styled-components": "^5.2.1",
-    "tailwind-styled-components": "^1.0.6",
+    "tailwind-styled-components": "^2.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
-    "web-vitals": "^0.2.4",
+    "web-vitals": "^3.0.0",
     "xstate": "^4.16.2"
   },
   "scripts": {
