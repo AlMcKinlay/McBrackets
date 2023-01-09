@@ -14,7 +14,7 @@
     "postcss": "^7.0.35",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.3",
+    "react-scripts": "5.0.1",
     "styled-components": "^5.2.1",
     "tailwind-styled-components": "^1.0.6",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
