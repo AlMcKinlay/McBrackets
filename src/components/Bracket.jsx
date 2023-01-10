@@ -183,7 +183,11 @@ function BracketView() {
 
   const setTeam = setTeamFunc(bracket, changeBracket);
   const [name, setName] = useState("");
-  useEffect(() => bracket.length === 0 && setupBracket(setBracket), [bracket]);
+  useEffect(() => {
+    if (bracket.length === 0) {
+      setupBracket(setBracket)
+    }
+  }, [bracket]);
 
   const submitBracket = (e) => {
     e.preventDefault();

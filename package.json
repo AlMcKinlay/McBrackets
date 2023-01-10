@@ -3,29 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@craco/craco": "^6.0.0",
-    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "@tailwindcss/postcss7-compat": "2.2.17",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^14.0.0",
-    "@xstate/react": "^3.0.0",
-    "autoprefixer": "^9.8.6",
-    "dom-to-image": "^2.6.0",
-    "postcss": "^8.0.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.3",
-    "styled-components": "^5.2.1",
-    "tailwind-styled-components": "^2.0.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
-    "web-vitals": "^3.0.0",
-    "xstate": "^4.16.2"
+    "@xstate/react": "3.0.1",
+    "autoprefixer": "10.4.13",
+    "dom-to-image": "2.6.0",
+    "postcss": "8.4.21",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "styled-components": "5.3.6",
+    "tailwind-styled-components": "2.2.0",
+    "tailwindcss": "2.2.19",
+    "web-vitals": "3.1.0",
+    "xstate": "4.35.2"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -44,5 +41,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^3.0.1",
+    "vite": "^4.0.4",
+    "vite-plugin-svgr": "^2.4.0",
+    "vite-tsconfig-paths": "^4.0.3"
   }
 }
