@@ -1,13 +1,10 @@
 module.exports = {
-  purge: {
-    content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-    options: {
-      safelist: {
-        standard: [/(row|col|border)-(span|start|r|l)/]
-      }
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  safelist: [
+    {
+      pattern: /(row|col|border)-(span|start|r|l)/,
     },
-  },
-  darkMode: false, // or 'media' or 'class'
+  ],
   theme: {
     extend: {
       height: {
@@ -79,14 +76,6 @@ module.exports = {
         'span-32': 'span 32 / span 32',
         'span-64': 'span 64 / span 64',
       },
-    },
-  },
-  variants: {
-    extend: {
-      textColor: ['disabled'],
-      backgroundColor: ['disabled'],
-      borderColor: ['disabled'],
-      cursor: ['disabled']
     },
   },
   plugins: [],
