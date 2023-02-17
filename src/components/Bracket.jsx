@@ -32,43 +32,43 @@ const setTeamInBracket = (bracket, round, match, team) => {
 }
 
 const startingRound = [
-  ["Gengar", "Paras"],
-  ["Dragonair", "Centiskorch"],
-  ["Heracross", "Sneasel"],
-  ["Alolan Vulpix", "Mareep"],
-  ["Ninetales", "Roselia"],
-  ["Wooloo", "Basculegion"],
-  ["Ampharos", "Bronzong"],
-  ["Gallade", "Togepi"],
-  ["Mimikyu", "Cranidos"],
-  ["Shinx", "Appletun"],
-  ["Scizor", "Galarian Zigzagoon"],
-  ["Toxtricity", "Cramorant"],
-  ["Lucario", "Tyrunt"],
-  ["Rotom", "Polteageist"],
-  ["Garchomp", "Pangoro"],
-  ["Milotic", "Primeape"],
-  ["Arcanine", "Dusknoir"],
-  ["Oddish", "Eiscue"],
-  ["Vulpix", "Darmanitan"],
-  ["Slowpoke", "Dragapult"],
-  ["Dedenne", "Bagon"],
-  ["Hatterene", "Poliwhirl"],
-  ["Jigglypuff", "Trapinch"],
-  ["Corviknight", "Phanpy"],
-  ["Gardevoir", "Heatmor"],
-  ["Gliscor", "Spinda"],
-  ["Metagross", "Chatot"],
-  ["Haunter", "Boltund"],
-  ["Tyranitar", "Vivillon"],
-  ["Hawlucha", "Grapploct"],
-  ["Sableye", "Golurk"],
-  ["Ludicolo", "Donphan"]
+  ["Giratina", "Cosmoem"],
+  ["Regieleki", "Tapu Bulu"],
+  ["Suicune", "Cobalion"],
+  ["Tapu Koko", "Virizion"],
+  ["Ho-oh", "Enamorus"],
+  ["Zapdos", "Ting-Lu"],
+  ["Spectrier", "Type: Null"],
+  ["Yveltal", "Regice"],
+  ["Lunala", "Regirock"],
+  ["Reshiram", "Palkia"],
+  ["Cresselia", "Kubfu"],
+  ["Mewtwo", "Landorus"],
+  ["Kyogre", "Calyrex"],
+  ["Wo-Chien", "Raikou"],
+  ["Urshifu", "Kyurem"],
+  ["Articuno", "Thundurus"],
+  ["Rayquaza", "Heatran"],
+  ["Tapu Fini", "Latias"],
+  ["Groudon", "Entei"],
+  ["Zygarde", "Glastrier"],
+  ["Chien-Pao", "Eternatus"],
+  ["Dialga", "Regidrago"],
+  ["Zamazenta", "Tapu Lele"],
+  ["Solgaleo", "Moltres"],
+  ["Xerneas", "Lake Trio"],
+  ["Necrozma", "Latios"],
+  ["Zekrom", "Regigigas"],
+  ["Zacian", "Terrakion"],
+  ["Koraidon", "Registeel"],
+  ["Chi-Yu", "Silvally"],
+  ["Miraidon", "Cosmog"],
+  ["Lugia", "Tornadus"]
 ];
 
 const year = "2023"
 const roundId = `ise-march-madness-${year}`;
-const version = 1;
+const version = 2;
 
 const setupBracket = (setBracket) => {
   const newBracket = [startingRound];
