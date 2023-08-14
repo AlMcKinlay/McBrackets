@@ -8,7 +8,7 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.0.0",
     "@xstate/react": "3.2.2",
-    "autoprefixer": "10.4.14",
+    "autoprefixer": "10.4.15",
     "dom-to-image": "2.6.0",
     "postcss": "8.4.27",
     "react": "18.2.0",
