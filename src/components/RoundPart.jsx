@@ -17,6 +17,10 @@ const Container = tw.div`
   grid-cols-1
   md:grid-cols-7
   xl:grid-cols-13
+  mr-2
+  ml-2
+  md:mr-0
+  md:ml-0
 `;
 
 const Round = tw.div`
