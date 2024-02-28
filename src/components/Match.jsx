@@ -8,14 +8,34 @@ const Container = tw.div`
     grid-rows-1
     content-around
     w-full
-    ${({level, roundorder, total, activeround}) => activeround === level ? 'col-start-1' : 'col-start-2'}
-    ${({level, roundorder, total}) => `md:col-start-${1 + level}`}
-    ${({level, roundorder, total}) => `row-start-${level === 5 ? 2 + roundorder * 32 : 2 + (Math.pow(2, level + 1) * roundorder)}`}
-    ${({level, roundorder, total}) => `md:row-start-${level === 5 ? 1 + roundorder * 32 : 1 + (Math.pow(2, level + 1) * roundorder)}`}
-    ${({level}) => `row-span-${level < 5 ? Math.pow(2, level + 1) : level === 5 ? "32" : "64"}`}
-    ${({level, roundorder, total}) => `xl:col-start-${roundorder < total / 2 ? 1 + level : 13 - level}`}
-    ${({level, roundorder, total}) => `xl:row-start-${roundorder < total / 2 ? 1 + (Math.pow(2, level + 1) * roundorder) : 1 + (Math.pow(2, level + 1) * (roundorder - (total / 2)))}`}
-    ${({level}) => `xl:row-span-${level < 5 ? Math.pow(2, level + 1) : "32"}`}
+    ${({ level, roundorder, total, activeround }) =>
+      activeround === level ? "col-start-1" : "col-start-2"}
+    ${({ level, roundorder, total }) => `md:col-start-${1 + level}`}
+    ${({ level, roundorder, total }) =>
+      `row-start-${
+        level === 5
+          ? 2 + roundorder * 32
+          : 2 + Math.pow(2, level + 1) * roundorder
+      }`}
+    ${({ level, roundorder, total }) =>
+      `md:row-start-${
+        level === 5
+          ? 1 + roundorder * 32
+          : 1 + Math.pow(2, level + 1) * roundorder
+      }`}
+    ${({ level }) =>
+      `row-span-${
+        level < 5 ? Math.pow(2, level + 1) : level === 5 ? "32" : "64"
+      }`}
+    ${({ level, roundorder, total }) =>
+      `xl:col-start-${roundorder < total / 2 ? 1 + level : 13 - level}`}
+    ${({ level, roundorder, total }) =>
+      `xl:row-start-${
+        roundorder < total / 2
+          ? 1 + Math.pow(2, level + 1) * roundorder
+          : 1 + Math.pow(2, level + 1) * (roundorder - total / 2)
+      }`}
+    ${({ level }) => `xl:row-span-${level < 5 ? Math.pow(2, level + 1) : "32"}`}
 `;
 
 const Teams = tw.div`
@@ -28,13 +48,15 @@ const Teams = tw.div`
 const ConnectorsOutgoing = tw.div`
   grid
   grid-rows-4
-  ${({roundorder, total}) => `xl:col-start-${roundorder < (total / 2) ? 10 : 1}`}
+  ${({ roundorder, total }) =>
+    `xl:col-start-${roundorder < total / 2 ? 10 : 1}`}
 `;
 
 const ConnectorsIncoming = tw.div`
   grid
   grid-rows-4
-  ${({roundorder, total}) => `xl:col-start-${roundorder < (total / 2) ? 1 : 10}`}
+  ${({ roundorder, total }) =>
+    `xl:col-start-${roundorder < total / 2 ? 1 : 10}`}
 `;
 
 const ConnectorBottom = tw.div`
@@ -78,14 +100,25 @@ const ConnectorSide = tw.div`
   row-span-2
   border-r-2
   xl:border-r-0
-  ${({roundorder, total}) => `xl:border-${roundorder < (total / 2) ? "r" : "l"}-2`}
+  ${({ roundorder, total }) =>
+    `xl:border-${roundorder < total / 2 ? "r" : "l"}-2`}
 `;
 
 const ConnectorSpace = tw.div`
   row-span-2
 `;
 
-function Match({team1, team2, level, roundorder, total, setTeam, activeround}) {
+function Match({
+  team1,
+  team2,
+  level,
+  roundorder,
+  total,
+  setTeam,
+  activeround,
+  team1Selected,
+  team2Selected,
+}) {
   const selectTeam = (team) => {
     if (team1 === "\u00a0" || team2 === "\u00a0") {
       console.log("One of the teams isn't set yet");
@@ -98,36 +131,66 @@ function Match({team1, team2, level, roundorder, total, setTeam, activeround}) {
     }
 
     setTeam(team);
-  }
+  };
   return (
-    <Container className="match" level={level} roundorder={roundorder} total={total} activeround={activeround}>
-      
-      {team2 ? 
+    <Container
+      className="match"
+      level={level}
+      roundorder={roundorder}
+      total={total}
+      activeround={activeround}
+    >
+      {team2 ? (
         <ConnectorsIncoming roundorder={roundorder} total={total}>
-          {level > 0 && <><ConnectorBottom></ConnectorBottom><ConnectorSpace></ConnectorSpace><ConnectorTop></ConnectorTop></>}
+          {level > 0 && (
+            <>
+              <ConnectorBottom></ConnectorBottom>
+              <ConnectorSpace></ConnectorSpace>
+              <ConnectorTop></ConnectorTop>
+            </>
+          )}
         </ConnectorsIncoming>
-       : 
+      ) : (
         <ConnectorsIncoming roundorder={roundorder} total={total}>
           <ConnectorSpace></ConnectorSpace>
           <ConnectorTop></ConnectorTop>
         </ConnectorsIncoming>
-       }
+      )}
       <Teams>
-        <Team name={team1} onClick={() => selectTeam(team1)}></Team>
-        {team2 && <Team name={team2} onClick={() => selectTeam(team2)}></Team>}
+        <Team
+          name={team1}
+          onClick={() => selectTeam(team1)}
+          selected={team1Selected}
+        ></Team>
+        {team2 && (
+          <Team
+            name={team2}
+            onClick={() => selectTeam(team2)}
+            selected={team2Selected}
+          ></Team>
+        )}
       </Teams>
-      {team2 ?
+      {team2 ? (
         <ConnectorsOutgoing roundorder={roundorder} total={total}>
           <ConnectorBottom></ConnectorBottom>
           <ConnectorSide roundorder={roundorder} total={total}></ConnectorSide>
           <ConnectorTop></ConnectorTop>
         </ConnectorsOutgoing>
-       : 
-       <ConnectorsOutgoing roundorder={roundorder} total={total}>
-         {roundorder === 0 && <ConnectorSpace></ConnectorSpace> }
-         {roundorder === 0 && total > 1 ? <ConnectorTopFinal></ConnectorTopFinal> : total === 1 ? <ConnectorTopFinal2></ConnectorTopFinal2> : <><ConnectorBottomFinal></ConnectorBottomFinal><ConnectorTopFinal2></ConnectorTopFinal2></>}
-       </ConnectorsOutgoing>
-      }
+      ) : (
+        <ConnectorsOutgoing roundorder={roundorder} total={total}>
+          {roundorder === 0 && <ConnectorSpace></ConnectorSpace>}
+          {roundorder === 0 && total > 1 ? (
+            <ConnectorTopFinal></ConnectorTopFinal>
+          ) : total === 1 ? (
+            <ConnectorTopFinal2></ConnectorTopFinal2>
+          ) : (
+            <>
+              <ConnectorBottomFinal></ConnectorBottomFinal>
+              <ConnectorTopFinal2></ConnectorTopFinal2>
+            </>
+          )}
+        </ConnectorsOutgoing>
+      )}
     </Container>
   );
 }

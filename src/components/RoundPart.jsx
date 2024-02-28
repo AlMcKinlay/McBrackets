@@ -53,12 +53,32 @@ const ForwardButton = tw.button`
   col-start-10
 `;
 
+const isMatchSelected = (bracket, round, match, team) => {
+  let futureRound;
+  if (round < bracket.length - 3) {
+    // Normal round
+    futureRound = bracket[round + 1][Math.floor(match / 2)][match % 2];
+  } else if (round === bracket.length - 3) {
+    // Semi-final
+    futureRound = bracket[round + 1][match % 2][0];
+  } else if (round === bracket.length - 2) {
+    // Final
+    futureRound = bracket[round + 1][0][0] === team;
+  } else {
+    // We have clicked on the winner
+    return false;
+  }
+
+  return futureRound === team && futureRound !== "\u00a0";
+};
+
 function RoundPart({ bracket, setTeam }) {
   const [activeRound, setRound] = useState(0);
   const previousRound = () =>
     setRound(activeRound > 0 ? activeRound - 1 : activeRound);
   const nextRound = () =>
     setRound(activeRound < bracket.length - 1 ? activeRound + 1 : activeRound);
+
   return (
     <div id="bracket-for-image">
       <Container>
@@ -92,6 +112,18 @@ function RoundPart({ bracket, setTeam }) {
                 total={round.length}
                 activeround={activeRound}
                 setTeam={(team) => setTeam(level, roundorder, team)}
+                team1Selected={isMatchSelected(
+                  bracket,
+                  level,
+                  roundorder,
+                  match[0]
+                )}
+                team2Selected={isMatchSelected(
+                  bracket,
+                  level,
+                  roundorder,
+                  match[1]
+                )}
               />
             ))}
 

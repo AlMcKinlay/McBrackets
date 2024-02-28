@@ -12,15 +12,16 @@ const Container = tw.div`
   my-1
   flex
   col-span-8
+  ${({ selected }) => selected && "bg-gray-500"}
 `;
 
 const Name = tw.div`
   m-auto
 `;
 
-function Team({ name, onClick }) {
+function Team({ name, onClick, selected }) {
   return (
-    <Container onClick={onClick}>
+    <Container onClick={onClick} selected={selected}>
       <Name style={{ wordBreak: "break-word" }}>{name}</Name>
     </Container>
   );
