@@ -94,6 +94,20 @@ function RoundPart({ bracket, setTeam }) {
                 setTeam={(team) => setTeam(level, roundorder, team)}
               />
             ))}
+
+            <RoundSwitcher activeround={activeRound} level={level}>
+              <BackButton onClick={previousRound} activeround={activeRound}>
+                &lt;
+              </BackButton>
+              <RoundName>{RoundNames[level].replace(/-/g, " ")}</RoundName>
+              <ForwardButton
+                onClick={nextRound}
+                activeround={activeRound}
+                totalrounds={bracket.length}
+              >
+                &gt;
+              </ForwardButton>
+            </RoundSwitcher>
           </Round>
         ))}
       </Container>
