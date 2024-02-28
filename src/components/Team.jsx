@@ -18,10 +18,10 @@ const Name = tw.div`
   m-auto
 `;
 
-function Team({name, onClick}) {
+function Team({ name, onClick }) {
   return (
     <Container onClick={onClick}>
-      <Name>{name}</Name>
+      <Name style={{ wordBreak: "break-word" }}>{name}</Name>
     </Container>
   );
 }

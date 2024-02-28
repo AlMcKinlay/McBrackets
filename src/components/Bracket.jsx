@@ -1,7 +1,7 @@
 import domtoimage from "dom-to-image";
 import { useEffect, useState } from "react";
-import { useMachine } from '@xstate/react';
-import { Machine } from 'xstate';
+import { useMachine } from "@xstate/react";
+import { Machine } from "xstate";
 
 import styled from "styled-components";
 import tw from "tailwind-styled-components";
@@ -11,7 +11,7 @@ const space = "\u00a0";
 
 const setTeamFunc = (bracket, setBracket) => (round, match, team) => {
   setBracket(setTeamInBracket(bracket, round, match, team));
-}
+};
 
 const setTeamInBracket = (bracket, round, match, team) => {
   const newBracket = JSON.parse(JSON.stringify(bracket));
@@ -29,51 +29,54 @@ const setTeamInBracket = (bracket, round, match, team) => {
     return;
   }
   return newBracket;
-}
+};
 
 const startingRound = [
-  ["Giratina", "Cosmoem"],
-  ["Regieleki", "Tapu Bulu"],
-  ["Suicune", "Cobalion"],
-  ["Tapu Koko", "Virizion"],
-  ["Ho-oh", "Enamorus"],
-  ["Zapdos", "Ting-Lu"],
-  ["Spectrier", "Type: Null"],
-  ["Yveltal", "Regice"],
-  ["Lunala", "Regirock"],
-  ["Reshiram", "Palkia"],
-  ["Cresselia", "Kubfu"],
-  ["Mewtwo", "Landorus"],
-  ["Kyogre", "Calyrex"],
-  ["Wo-Chien", "Raikou"],
-  ["Urshifu", "Kyurem"],
-  ["Articuno", "Thundurus"],
-  ["Rayquaza", "Heatran"],
-  ["Tapu Fini", "Latias"],
-  ["Groudon", "Entei"],
-  ["Zygarde", "Glastrier"],
-  ["Chien-Pao", "Eternatus"],
-  ["Dialga", "Regidrago"],
-  ["Zamazenta", "Tapu Lele"],
-  ["Solgaleo", "Moltres"],
-  ["Xerneas", "Lake Trio"],
-  ["Necrozma", "Latios"],
-  ["Zekrom", "Regigigas"],
-  ["Zacian", "Terrakion"],
-  ["Koraidon", "Registeel"],
-  ["Chi-Yu", "Silvally"],
-  ["Miraidon", "Cosmog"],
-  ["Lugia", "Tornadus"]
+  ["Pokémon GO", "PokéPark: Fishing Rally DS"],
+  ["Pokémon Pinball: Ruby & Sapphire", "Pokémon Stadium (JP)"],
+  [
+    "Pokémon Trading Card Game Online",
+    "PMD: Blazing/Stormy/Light Adventure Squad",
+  ],
+  ["Pokémon Ranger", "Learn with Pokémon: Typing Adventure"],
+  ["Pokémon Smile", "PTCG 2: The Invasion of Team GR!"],
+  ["Hey You, Pikachu!", "Detective Pikachu"],
+  ["PMD: Red & Blue Rescue Team", "Pokémon Picross"],
+  ["Pokémon Battle Revolution", "Pokémon Art Academy"],
+  ["Pokémon Masters EX", "Pokémon Rumble U"],
+  ["Pokémon XD: Gale of Darkness", "PokéPark 2: Wonders Beyond"],
+  ["Pokémon Trading Card Game", "Pokémon Rumble"],
+  ["New Pokémon Snap", "Pokémon Channel"],
+  ["Pokémon Shuffle", "Pokémon Battrio"],
+  ["PMD: Explorers of Sky", "Pokémon Dash"],
+  ["PMD: Explorers of Time & Darkness", "Detective Pikachu Returns"],
+  ["Pokémon Ranger: Shadows of Almia", "Pokémon Puzzle League"],
+  ["Pokémon UNITE", "The Thieves and the 1000 Pokémon"],
+  ["PMD: Gates to Infinity", "Pokémon Trading Card Game Live"],
+  ["Pokkén Tournament", "Pokémon Puzzle Challenge"],
+  ["Pokémon Stadium 2", "Pokémon Dream World"],
+  ["Pokémon Sleep", "PokéWalker"],
+  ["Pokémon Super Mystery Dungeon", "Pokémon Trozei!"],
+  ["Pokémon Stadium", "Pokémon Rumble World"],
+  ["PMD: Rescue Team DX", "My Pokémon Ranch"],
+  ["Pokémon Quest", "Pokémon Play It!"],
+  ["Pokémon Rumble Blast", "PokéPark Wii: Pikachu's Adventure"],
+  ["Pokémon Snap", "Pokémon Battle Trozei"],
+  ["Pokémon Colosseum", "Pokédex 3D"],
+  ["Pokémon: Magikarp Jump", "Pokémon Rumble Rush"],
+  ["Pokémon Ranger: Guardian Signs", "Pokémon Conquest"],
+  ["Pokémon Pinball", "Pokédex 3D Pro"],
+  ["Pokémon Café ReMix", "Pokémon Dream Radar"],
 ];
 
-const year = "2023"
+const year = "2024";
 const roundId = `ise-march-madness-${year}`;
-const version = 2;
+const version = 1;
 
 const setupBracket = (setBracket) => {
   const newBracket = [startingRound];
   let numberInRound = startingRound.length;
-  while(numberInRound >= 1) {
+  while (numberInRound >= 1) {
     numberInRound = numberInRound / 2;
     let round;
     if (numberInRound > 1) {
@@ -86,7 +89,7 @@ const setupBracket = (setBracket) => {
     newBracket.push(round);
   }
   setBracket(newBracket);
-}
+};
 
 const Bracket = tw.div`
   md:px-5
@@ -131,61 +134,70 @@ const ExportArea = styled(tw.form`
   grid-template-columns: 1fr auto auto auto auto auto;
 `;
 
-export const bracketMachine = Machine({
-  id: 'bracket',
-  initial: 'unsubmitted',
-  states: {
-    unsubmitted: {
-      on: { 
-        SUBMIT: {
-          target: 'submitted',
-          actions: ['save']
-        }
-      }
+export const bracketMachine = Machine(
+  {
+    id: "bracket",
+    initial: "unsubmitted",
+    states: {
+      unsubmitted: {
+        on: {
+          SUBMIT: {
+            target: "submitted",
+            actions: ["save"],
+          },
+        },
+      },
+      submitted: {
+        on: {
+          RESET: {
+            target: "unsubmitted",
+            actions: ["save"],
+          },
+        },
+      },
     },
-    submitted: {
-      on: {
-        RESET: {
-          target: 'unsubmitted',
-          actions: ['save']
-        }
-      }
-    }
   },
-},
-{
-  actions: {
-    save: (_, __, data) => {
-      const jsonState = JSON.stringify(data.state);
+  {
+    actions: {
+      save: (_, __, data) => {
+        const jsonState = JSON.stringify(data.state);
 
-      try {
-        localStorage.setItem(`submit-state-${roundId}-${version}`, jsonState);
-      } catch (e) {}
+        try {
+          localStorage.setItem(`submit-state-${roundId}-${version}`, jsonState);
+        } catch (e) {}
+      },
     },
   }
-});
+);
 
-const persistedState = JSON.parse(localStorage.getItem(`submit-state-${roundId}-${version}`)) || bracketMachine.initialState;
+const persistedState =
+  JSON.parse(localStorage.getItem(`submit-state-${roundId}-${version}`)) ||
+  bracketMachine.initialState;
 
 function BracketView() {
-  const [state, send] = useMachine(bracketMachine, {state: persistedState});
+  const [state, send] = useMachine(bracketMachine, { state: persistedState });
   let localStorageState;
   try {
-    localStorageState = JSON.parse(localStorage.getItem(`bracket-${roundId}-${version}`));
+    localStorageState = JSON.parse(
+      localStorage.getItem(`bracket-${roundId}-${version}`)
+    );
   } catch (e) {
     localStorageState = [];
   }
   const [bracket, setBracket] = useState(localStorageState || []);
   const changeBracket = (bracket) => {
-    localStorage.setItem(`bracket-${roundId}-${version}`, JSON.stringify(bracket));
+    localStorage.setItem(
+      `bracket-${roundId}-${version}`,
+      JSON.stringify(bracket)
+    );
     setBracket(bracket);
-  }
+  };
 
   const setTeam = setTeamFunc(bracket, changeBracket);
   const [name, setName] = useState("");
   useEffect(() => {
     if (bracket.length === 0) {
-      setupBracket(setBracket)
+      setupBracket(setBracket);
     }
   }, [bracket]);
 
@@ -199,56 +211,61 @@ function BracketView() {
       round.forEach((match) => {
         match.forEach((team) => {
           csv += `,${team}`;
-        })
+        });
       });
     });
     email(csv, name);
-  }
+  };
 
   const clearBracket = (e) => {
     e.preventDefault();
     setupBracket(changeBracket);
-    send('RESET');
-  }
+    send("RESET");
+  };
 
   const email = (csv, name) => {
     const formData = new FormData();
-    formData.append('csv', csv);
-    formData.append('form-name', 'csv-submit');
-    formData.append('subject', `Form submission from ${name} ${year}`)
-    fetch('/', {
-      method: 'POST',
+    formData.append("csv", csv);
+    formData.append("form-name", "csv-submit");
+    formData.append("subject", `Form submission from ${name} ${year}`);
+    fetch("/", {
+      method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString()
-    }).then((e) => {
-      if (e.status === 200 || e.status === 204) {
-        send('SUBMIT');
-      }
-    }).catch((error) => alert(error))
-  }
-  
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then((e) => {
+        if (e.status === 200 || e.status === 204) {
+          send("SUBMIT");
+        }
+      })
+      .catch((error) => alert(error));
+  };
+
   const downloadImage = (e) => {
-    e.preventDefault()
-    const element = document.getElementById('bracket-for-image');
-    domtoimage.toPng(element)
-    .then(function (dataUrl) {
+    e.preventDefault();
+    const element = document.getElementById("bracket-for-image");
+    domtoimage
+      .toPng(element)
+      .then(function (dataUrl) {
         var a = document.createElement("a");
         a.href = dataUrl;
         a.download = `${roundId}.png`;
         a.click();
-    })
-    .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-    });
-  }
+      })
+      .catch(function (error) {
+        console.error("oops, something went wrong!", error);
+      });
+  };
 
   const readyToSubmit = () => {
-    return bracket.every((round) => {
-      return round.every((match) => {
-        return match[0] !== space && match[1] !== space;
-      });
-    }) && name.trim();
-  }
+    return (
+      bracket.every((round) => {
+        return round.every((match) => {
+          return match[0] !== space && match[1] !== space;
+        });
+      }) && name.trim()
+    );
+  };
 
   const random = (e) => {
     e.preventDefault();
@@ -258,29 +275,52 @@ function BracketView() {
       if (roundIdx === 5) {
         const winnerNum = Math.round(Math.random() * 1);
         const winner = round[winnerNum][0];
-        newBracket = setTeamInBracket(newBracket, roundIdx, winnerNum, winner)
+        newBracket = setTeamInBracket(newBracket, roundIdx, winnerNum, winner);
       } else {
         for (let matchIdx = 0; matchIdx < round.length; matchIdx++) {
           const match = round[matchIdx];
           const winner = match[Math.round(Math.random() * 1)];
-          newBracket = setTeamInBracket(newBracket, roundIdx, matchIdx, winner)
+          newBracket = setTeamInBracket(newBracket, roundIdx, matchIdx, winner);
         }
       }
     }
     changeBracket(newBracket);
-  }
+  };
 
-  const submissionsOpen = false;
+  const submissionsOpen = true;
 
   return (
-    <Bracket> 
+    <Bracket>
       <RoundPart bracket={bracket} setTeam={setTeam}></RoundPart>
-      <ExportArea name="submit" method="POST" data-netlify="true" id="submitForm">
-          {submissionsOpen && <Clear onClick={clearBracket}>Reset</Clear>}
-          {state.matches('submitted') || (submissionsOpen && <Random onClick={random}>Choose For Me</Random>)}
-          {state.matches('submitted') || (submissionsOpen && <NameInput onChange={(event) => setName(event.target.value)} value={name} placeholder="Slack Name" name="name" />)}
-          {state.matches('submitted') || (submissionsOpen && <Submit onClick={submitBracket} type="submit" disabled={!readyToSubmit()}>Submit Predictions</Submit>)}
-          <Download onClick={downloadImage}>Download as Image</Download>
+      <ExportArea
+        name="submit"
+        method="POST"
+        data-netlify="true"
+        id="submitForm"
+      >
+        {submissionsOpen && <Clear onClick={clearBracket}>Reset</Clear>}
+        {state.matches("submitted") ||
+          (submissionsOpen && <Random onClick={random}>Choose For Me</Random>)}
+        {state.matches("submitted") ||
+          (submissionsOpen && (
+            <NameInput
+              onChange={(event) => setName(event.target.value)}
+              value={name}
+              placeholder="Slack Name"
+              name="name"
+            />
+          ))}
+        {state.matches("submitted") ||
+          (submissionsOpen && (
+            <Submit
+              onClick={submitBracket}
+              type="submit"
+              disabled={!readyToSubmit()}
+            >
+              Submit Predictions
+            </Submit>
+          ))}
+        <Download onClick={downloadImage}>Download as Image</Download>
       </ExportArea>
     </Bracket>
   );
