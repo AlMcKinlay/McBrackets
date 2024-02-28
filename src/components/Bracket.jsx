@@ -45,7 +45,7 @@ const startingRound = [
   ["Pokémon Battle Revolution", "Pokémon Art Academy"],
   ["Pokémon Masters EX", "Pokémon Rumble U"],
   ["Pokémon XD: Gale of Darkness", "PokéPark 2: Wonders Beyond"],
-  ["Pokémon Trading Card Game", "Pokémon Rumble"],
+  ["Pokémon Trading Card Game GBC", "Pokémon Rumble"],
   ["New Pokémon Snap", "Pokémon Channel"],
   ["Pokémon Shuffle", "Pokémon Battrio"],
   ["PMD: Explorers of Sky", "Pokémon Dash"],
