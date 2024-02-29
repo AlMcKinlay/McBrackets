@@ -7,6 +7,7 @@ import styled from "styled-components";
 import tw from "tailwind-styled-components";
 import RoundPart from "./RoundPart";
 import Tooltip from "./Tooltip";
+import Button from "./Button";
 
 const space = "\u00a0";
 
@@ -99,14 +100,6 @@ const Bracket = tw.div`
 const NameInput = tw.input`
   border-2 border-blue-500 font-bold text-blue-500 px-4 py-3 transition duration-300 ease-in-out
   col-span-4
-`;
-
-const Button = tw.button`
-  w-full
-  border-2 border-blue-500 font-bold text-blue-500 px-4 py-3 transition duration-300 ease-in-out
-  
-  hover:bg-blue-500 hover:text-white
-  disabled:text-gray-500 disabled:border-gray-500 disabled:bg-transparent disabled:cursor-default
 `;
 
 const Random = tw(Button)`

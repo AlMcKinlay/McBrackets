@@ -1,6 +1,7 @@
 import Match from "./Match";
 import tw from "tailwind-styled-components";
 import { useState } from "react";
+import Button from "./Button";
 
 const RoundNames = [
   "round-of-64",
@@ -21,6 +22,7 @@ const Container = tw.div`
   ml-2
   md:mr-0
   md:ml-0
+  
 `;
 
 const Round = tw.div`
@@ -37,24 +39,29 @@ const RoundSwitcher = tw.div`
   col-start-1
   row-start-1
   col-span-1
+  pb-2 pt-2
 `;
 
 const RoundName = tw.div`
-  col-span-8
-  col-start-2
+  col-span-2
+  col-start-5
   py-2
   m-auto
 `;
 
-const BackButton = tw.button`
+const BackButton = tw(Button)`
   ${({ activeround }) => activeround === 0 && "hidden"}
-  col-start-1
+  col-start-4
+  border-gray-500
+  text-gray-500
 `;
 
-const ForwardButton = tw.button`
+const ForwardButton = tw(Button)`
   ${({ activeround, totalrounds }) =>
     activeround === totalrounds - 1 && "hidden"}
-  col-start-10
+  col-start-7
+  border-gray-500
+  text-gray-500
 `;
 
 const isMatchSelected = (bracket, round, match, team) => {
