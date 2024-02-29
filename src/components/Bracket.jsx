@@ -6,6 +6,7 @@ import { Machine } from "xstate";
 import styled from "styled-components";
 import tw from "tailwind-styled-components";
 import RoundPart from "./RoundPart";
+import Tooltip from "./Tooltip";
 
 const space = "\u00a0";
 
@@ -257,15 +258,14 @@ function BracketView() {
       });
   };
 
-  const readyToSubmit = () => {
-    return (
-      bracket.every((round) => {
-        return round.every((match) => {
-          return match[0] !== space && match[1] !== space;
-        });
-      }) && name.trim()
-    );
-  };
+  const bracketFilledOut = () =>
+    bracket.every((round) => {
+      return round.every((match) => {
+        return match[0] !== space && match[1] !== space;
+      });
+    });
+
+  const readyToSubmit = () => bracketFilledOut() && name.trim();
 
   const random = (e) => {
     e.preventDefault();
@@ -312,13 +312,22 @@ function BracketView() {
           ))}
         {state.matches("submitted") ||
           (submissionsOpen && (
-            <Submit
-              onClick={submitBracket}
-              type="submit"
-              disabled={!readyToSubmit()}
+            <Tooltip
+              text={
+                bracketFilledOut()
+                  ? "Enter your name"
+                  : "Select a winner of every match in every round"
+              }
+              enabled={!readyToSubmit()}
             >
-              Submit Predictions
-            </Submit>
+              <Submit
+                onClick={submitBracket}
+                type="submit"
+                disabled={!readyToSubmit()}
+              >
+                Submit Predictions
+              </Submit>
+            </Tooltip>
           ))}
         <Download onClick={downloadImage}>Download as Image</Download>
       </ExportArea>
