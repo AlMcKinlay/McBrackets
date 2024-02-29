@@ -4,9 +4,8 @@ import styled from "styled-components";
 const Extend = tw.span`
   border-2 border-blue-500 px-4 py-3 transition duration-300 ease-in-out
   
-  bg-blue-500 text-white text-xs
-  mr-6
-  absolute z-1 left-0 w-100
+  bg-blue-500 text-white text-s
+  absolute z-1 left-0 w-full
 
   &:after {
     transition duration-300 ease-in-out
@@ -16,7 +15,7 @@ const Extend = tw.span`
 const Text = styled(Extend)`
   text-align: center;
   border-radius: 6px;
-  top: -110%;
+  bottom: 4rem;
   visibility: hidden;
   opacity: 0;
 
@@ -37,6 +36,7 @@ const Text = styled(Extend)`
 const Container = styled.div`
   position: relative;
   display: inline-block;
+  grid-column: span 2;
   &:hover ${Text} {
     visibility: visible;
     opacity: 1;

@@ -97,33 +97,33 @@ const Bracket = tw.div`
 `;
 
 const NameInput = tw.input`
-  border-2 border-blue-500 font-bold text-blue-500 px-4 py-3 transition duration-300 ease-in-out mr-6
-  col-start-4
+  border-2 border-blue-500 font-bold text-blue-500 px-4 py-3 transition duration-300 ease-in-out
+  col-span-4
 `;
 
 const Button = tw.button`
+  w-full
   border-2 border-blue-500 font-bold text-blue-500 px-4 py-3 transition duration-300 ease-in-out
   
   hover:bg-blue-500 hover:text-white
   disabled:text-gray-500 disabled:border-gray-500 disabled:bg-transparent disabled:cursor-default
-  mr-6
 `;
 
 const Random = tw(Button)`
-  col-start-3
+  col-span-2
 `;
 
 const Submit = tw(Button)`
-  col-start-5
+  col-span-2
 `;
 
 const Clear = tw(Button)`
-  col-start-2
+  col-span-2
 `;
 
 const Download = tw(Button)`
   border-2 border-blue-500 font-bold text-blue-500 px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-500 hover:text-white mr-6
-  col-start-6
+  col-span-2
   hidden
   md:block
 `;
@@ -131,8 +131,12 @@ const Download = tw(Button)`
 const ExportArea = styled(tw.form`
   p-4
   grid
+  grid-cols-6
+  grid-rows-2
+  md:grid-rows-1
+  md:grid-cols-12
 `)`
-  grid-template-columns: 1fr auto auto auto auto auto;
+  grid-gap: 10px;
 `;
 
 export const bracketMachine = Machine(
@@ -301,6 +305,7 @@ function BracketView() {
         {submissionsOpen && <Clear onClick={clearBracket}>Reset</Clear>}
         {state.matches("submitted") ||
           (submissionsOpen && <Random onClick={random}>Choose For Me</Random>)}
+        <Download onClick={downloadImage}>Download as Image</Download>
         {state.matches("submitted") ||
           (submissionsOpen && (
             <NameInput
@@ -329,7 +334,6 @@ function BracketView() {
               </Submit>
             </Tooltip>
           ))}
-        <Download onClick={downloadImage}>Download as Image</Download>
       </ExportArea>
     </Bracket>
   );
