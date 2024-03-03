@@ -74,9 +74,9 @@ const isMatchSelected = (bracket, round, match, team) => {
     futureRound = bracket[round + 1][match % 2][0];
   } else if (round === bracket.length - 2) {
     // Final
-    futureRound = bracket[round + 1][0][0] === team;
+    futureRound = bracket[round + 1][0][0];
   } else {
-    // We have clicked on the winner
+    // This is the winner
     return false;
   }
 
