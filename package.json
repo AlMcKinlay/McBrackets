@@ -5,7 +5,7 @@
   "dependencies": {
     "@tailwindcss/postcss7-compat": "2.2.17",
     "@testing-library/jest-dom": "^6.0.0",
-    "@testing-library/react": "^14.0.0",
+    "@testing-library/react": "^15.0.0",
     "@testing-library/user-event": "^14.0.0",
     "@xstate/react": "3.2.2",
     "autoprefixer": "10.4.19",
