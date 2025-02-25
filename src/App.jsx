@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <nav className="py-4 px-6 border-solid border-b-2 border-gray-500 md:h-64">
-        <Logo src={logo} alt="logo" className="h-full w-auto" />
+        <Logo src={logo} alt="logo" className="max-h-full w-auto" />
       </nav>
 
       <main className="pt-5">
