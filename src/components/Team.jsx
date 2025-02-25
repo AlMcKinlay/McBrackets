@@ -16,7 +16,7 @@ const Container = tw.div`
 `;
 
 const Name = tw.div`
-  m-auto
+  w-full text-center
 `;
 
 function Team({ name, onClick, selected }) {
